@@ -1,29 +1,83 @@
-﻿@using Products.Data.Models
-@model List<Product>
+﻿@using Products.ViewModels
+@model ProductsViewModel
 @{
     ViewData["Title"] = "Products' catalog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Список пользователей</h2>
-<p><a asp-action="Create">Добавить пользователя</a></p>
-<table class="table">
-    <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Note Custom</th>
-        <th>General Note</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Name</td>
-            <td>@item.Category.Name</td>
-            <td>@item.Description</td>
-            <td>@item.Price</td>
-            <td>@item.NoteCustom</td>
-            <td>@item.GeneralNote.Name</td>
-        </tr>
-    }
-</table>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    Добро пожаловать в каталог продуктов!
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>
+                Список продуктов
+            </h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <a class="btn btn-outline-info btn-block" asp-action="Edit" asp-controller="Home">Добавить продукт</a>
+                </div>
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-4">
+                    <form method="get">
+                        <div class="form-inline form-group">
+                            <input name="name" class="form-control" />
+                            <input type="submit" value="Search" class="btn btn-outline-success" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var item in Model.Products)
+                {
+                    <div class="col-md-4">
+                        <div class="card" style="margin: 10px">
+                            @if (string.IsNullOrEmpty(item.Image.Path))
+                            {
+                                <img class="card-img-top" alt="Bootstrap Thumbnail First" src="data:image/jpeg;base64, @item.Image.Bytes">
+                            }
+                            else
+                            {
+                                <img class="card-img-top" alt="Bootstrap Thumbnail First" src="@item.Image.Path">
+                            }
+                            <div class="card-block" style="padding: 5px">
+                                <h5 class="card-title">
+                                    @item.Name
+                                </h5>
+                                <p class="card-text">
+                                    @item.Description
+                                </p>
+                                <p class="card-text">
+                                    #@item.NoteCustom
+                                </p>
+                                <p class="card-text">
+                                    @item.GeneralNote.Name
+                                </p>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <a class="btn btn-outline-primary" asp-controller="Categories" asp-action="Index" asp-route-id="@item.Id">@item.Category.Name</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                    </div>
+                                    <div class="col-auto">
+                                        <a class="btn btn-success">
+                                            @item.Price рублей
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

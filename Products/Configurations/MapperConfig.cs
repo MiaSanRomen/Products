@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Products.Data.DataTransfer;
 using Products.Data.Models;
+using System.Drawing;
+using Image = Products.Data.Models.Image;
 
 namespace Products.Configurations
 {
@@ -11,6 +13,10 @@ namespace Products.Configurations
             CreateMap<Product, ProductDto>().ReverseMap();
 
             CreateMap<Category, CategoryDto>().ReverseMap();
+
+            CreateMap<GeneralNote, GeneralNoteDto>().ReverseMap();
+
+            CreateMap<Image, ImageDto>().ReverseMap();
         }
     }
 }

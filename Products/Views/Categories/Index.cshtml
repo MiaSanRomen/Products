@@ -1,0 +1,35 @@
+﻿@using Products.ViewModels
+@model CategoriesViewModel
+@{
+    ViewData["Title"] = "Products' catalog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Список всех категорий</h2>
+<p><a asp-action="Create">Добавить категорию</a></p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>Категория</th>
+        <th>Количество продуктов</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Categories)
+    {
+        <tr>
+            <td>
+                @if (string.IsNullOrEmpty(item.Image.Path))
+                {
+                    <img class="card-img-top" alt="Bootstrap Thumbnail First" src="data:image/jpeg;base64, @item.Image.Bytes)">
+                }
+                else
+                {
+                    <img class="card-img-top" alt="Bootstrap Thumbnail First" src="@item.Image.Path">
+                }
+            </td>
+            <td>@item.Name</td>
+            <td>@item.Count</td>
+            <td><a class="btn btn-outline-success" asp-controller="Categories" asp-action="Index" asp-route-id="@item.Id">Перейти</a></td>
+        </tr>
+    }
+</table>

@@ -32,12 +32,12 @@ namespace Products.Repositories
             return entity != null;
         }
 
-        public async Task<List<T>> GetAllAsync()
+        public async virtual Task<List<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }
 
-        public async Task<T> GetAsync(int? id)
+        public async virtual Task<T> GetAsync(int? id)
         {
             if(id is null)
             {

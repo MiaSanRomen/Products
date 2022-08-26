@@ -11,5 +11,7 @@
         public CategoryDto Category { get; set; }
         public int GeneralNoteId { get; set; }
         public GeneralNoteDto GeneralNote { get; set; }
+        public int? ImageId { get; set; }
+        public ImageDto Image { get; set; }
     }
 }

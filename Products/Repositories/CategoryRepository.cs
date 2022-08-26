@@ -18,5 +18,10 @@ namespace Products.Repositories
             return await _context.Categories.Include(q => q.Products)
                 .FirstOrDefaultAsync(q => q.Id == id);
         }
+
+        public async override Task<List<Category>> GetAllAsync()
+        {
+            return await _context.Categories.Include(q => q.Image).ToListAsync();
+        }
     }
 }

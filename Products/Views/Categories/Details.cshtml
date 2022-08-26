@@ -1,0 +1,37 @@
+﻿@using Products.ViewModels
+@model CategoryDetailsViewModel
+@{
+    ViewData["Title"] = Model.Category.Name + " - продукты";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Category.Name</h2>
+<p><a asp-action="Edit">Редактировать категорию</a></p>
+<table class="table">
+    <tr>
+        <th></th>
+        <th>Категория</th>
+        <th>Количество продуктов</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Category.Products)
+    {
+        <tr>
+            <td>
+                @if (string.IsNullOrEmpty(item.Image.Path))
+                {
+                    <img class="card-img-top" alt="Bootstrap Thumbnail First" src="data:image/jpeg;base64, @item.Image.Bytes)">
+                }
+                else
+                {
+                    <img class="card-img-top" alt="Bootstrap Thumbnail First" src="@item.Image.Path">
+                }
+            </td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+            <td>@item.NoteCustom</td>
+            <td>@item.GeneralNote.Name</td>
+        </tr>
+    }
+</table>

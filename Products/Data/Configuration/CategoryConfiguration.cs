@@ -12,17 +12,30 @@ namespace Products.Configuration
                 new Category
                 {
                     Id = 1,
-                    Name = "Еда"
+                    Name = "Еда",
+                    ImageId = 2,
+                    Count = 2
                 },
                 new Category
                 {
                     Id = 2,
-                    Name = "Вкусности"
+                    Name = "Вкусности",
+                    ImageId = 7,
+                    Count = 1
                 },
                 new Category
                 {
                     Id = 3,
-                    Name = "Вода"
+                    Name = "Вода",
+                    ImageId = 6,
+                    Count = 1
+                },
+                new Category
+                {
+                    Id = 4,
+                    Name = "Без категории",
+                    ImageId = 8,
+                    Count = 0
                 }
             );
         }

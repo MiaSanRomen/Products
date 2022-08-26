@@ -17,7 +17,8 @@ namespace Products.Configuration
                     NoteCustom = "Пересоленая",
                     Price = 10000,
                     CategoryId = 1,
-                    GeneralNoteId = 1
+                    GeneralNoteId = 1,
+                    ImageId = 1
                 },
                 new Product
                 {
@@ -27,7 +28,8 @@ namespace Products.Configuration
                     NoteCustom = "Жилы",
                     Price = 20000,
                     CategoryId = 1,
-                    GeneralNoteId = 2
+                    GeneralNoteId = 2,
+                    ImageId = 4
                 },
                 new Product
                 {
@@ -37,7 +39,8 @@ namespace Products.Configuration
                     NoteCustom = "Вкусная",
                     Price = 30000,
                     CategoryId = 2,
-                    GeneralNoteId = 3
+                    GeneralNoteId = 3,
+                    ImageId = 5
                 },
                 new Product
                 {
@@ -47,7 +50,8 @@ namespace Products.Configuration
                     NoteCustom = "Теплый",
                     Price = 15000,
                     CategoryId = 3,
-                    GeneralNoteId = 4
+                    GeneralNoteId = 4,
+                    ImageId = 3
                 }
             );
         }

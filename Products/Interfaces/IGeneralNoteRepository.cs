@@ -2,7 +2,7 @@
 
 namespace Products.Interfaces
 {
-    internal interface IGeneralNoteRepository : IGenericRepository<GeneralNote>
+    public interface IGeneralNoteRepository : IGenericRepository<GeneralNote>
     {
 
     }
