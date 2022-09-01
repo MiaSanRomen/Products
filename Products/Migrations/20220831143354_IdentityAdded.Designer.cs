@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Products.Data;
 
@@ -11,9 +12,10 @@ using Products.Data;
 namespace Products.Migrations
 {
     [DbContext(typeof(ProductsContext))]
-    partial class ProductsContextModelSnapshot : ModelSnapshot
+    [Migration("20220831143354_IdentityAdded")]
+    partial class IdentityAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,11 +159,11 @@ namespace Products.Migrations
 
             modelBuilder.Entity("Products.Data.Models.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -173,7 +175,7 @@ namespace Products.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ImageId");
 
@@ -182,28 +184,28 @@ namespace Products.Migrations
                     b.HasData(
                         new
                         {
-                            CategoryId = 1,
+                            Id = 1,
                             Count = 2,
                             ImageId = 2,
                             Name = "Еда"
                         },
                         new
                         {
-                            CategoryId = 2,
+                            Id = 2,
                             Count = 1,
                             ImageId = 7,
                             Name = "Вкусности"
                         },
                         new
                         {
-                            CategoryId = 3,
+                            Id = 3,
                             Count = 1,
                             ImageId = 6,
                             Name = "Вода"
                         },
                         new
                         {
-                            CategoryId = 4,
+                            Id = 4,
                             Count = 0,
                             ImageId = 8,
                             Name = "Без категории"
@@ -212,11 +214,11 @@ namespace Products.Migrations
 
             modelBuilder.Entity("Products.Data.Models.Image", b =>
                 {
-                    b.Property<int>("ImageId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Bytes")
                         .HasColumnType("nvarchar(max)");
@@ -224,60 +226,60 @@ namespace Products.Migrations
                     b.Property<string>("Path")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ImageId");
+                    b.HasKey("Id");
 
                     b.ToTable("Images");
 
                     b.HasData(
                         new
                         {
-                            ImageId = 1,
+                            Id = 1,
                             Path = "/images/fish.jfif"
                         },
                         new
                         {
-                            ImageId = 2,
+                            Id = 2,
                             Path = "/images/food.jpg"
                         },
                         new
                         {
-                            ImageId = 3,
+                            Id = 3,
                             Path = "/images/kvas.jpg"
                         },
                         new
                         {
-                            ImageId = 4,
+                            Id = 4,
                             Path = "/images/meat.jpg"
                         },
                         new
                         {
-                            ImageId = 5,
+                            Id = 5,
                             Path = "/images/sugarmilk.jpg"
                         },
                         new
                         {
-                            ImageId = 6,
+                            Id = 6,
                             Path = "/images/water.jpg"
                         },
                         new
                         {
-                            ImageId = 7,
+                            Id = 7,
                             Path = "/images/yummy.jpg"
                         },
                         new
                         {
-                            ImageId = 8,
+                            Id = 8,
                             Path = "/images/food-unknown.jpg"
                         });
                 });
 
             modelBuilder.Entity("Products.Data.Models.Product", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -304,7 +306,7 @@ namespace Products.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
@@ -315,7 +317,7 @@ namespace Products.Migrations
                     b.HasData(
                         new
                         {
-                            ProductId = 1,
+                            Id = 1,
                             CategoryId = 1,
                             Description = "Селедка соленая",
                             GeneralNote = "Акция",
@@ -326,7 +328,7 @@ namespace Products.Migrations
                         },
                         new
                         {
-                            ProductId = 2,
+                            Id = 2,
                             CategoryId = 1,
                             Description = "Тушенка говяжая",
                             GeneralNote = "Вкусная",
@@ -337,7 +339,7 @@ namespace Products.Migrations
                         },
                         new
                         {
-                            ProductId = 3,
+                            Id = 3,
                             CategoryId = 2,
                             Description = "В банках",
                             GeneralNote = "С ключом",
@@ -348,7 +350,7 @@ namespace Products.Migrations
                         },
                         new
                         {
-                            ProductId = 4,
+                            Id = 4,
                             CategoryId = 3,
                             Description = "В бутылках",
                             GeneralNote = "Вятский",

@@ -1,4 +1,6 @@
-﻿namespace Products.Interfaces
+﻿using Products.Data.Models;
+
+namespace Products.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
@@ -8,5 +10,7 @@
         Task DeleteAsync(int id);
         Task UpdateAsync(T entity);
         Task<bool> Exists(int id);
+        Task<T> GetDetails(int id);
+        void TrackerClearAsync();
     }
 }

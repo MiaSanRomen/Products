@@ -1,83 +1,99 @@
-﻿@using Products.ViewModels
+﻿@using Products.Configurations
+@using Products.ViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model ProductsViewModel
 @{
-    ViewData["Title"] = "Products' catalog";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Каталог продуктов";
+    Layout = "~/Views/Shared/_BodyPartial.cshtml";
 }
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>
-                    Добро пожаловать в каталог продуктов!
-                </h1>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <h3>
-                Список продуктов
-            </h3>
-            <div class="row">
-                <div class="col-md-3">
-                    <a class="btn btn-outline-info btn-block" asp-action="Edit" asp-controller="Home">Добавить продукт</a>
-                </div>
-                <div class="col-md-5">
-                </div>
-                <div class="col-md-4">
-                    <form method="get">
-                        <div class="form-inline form-group">
-                            <input name="name" class="form-control" />
-                            <input type="submit" value="Search" class="btn btn-outline-success" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                @foreach (var item in Model.Products)
-                {
-                    <div class="col-md-4">
-                        <div class="card" style="margin: 10px">
-                            @if (string.IsNullOrEmpty(item.Image.Path))
-                            {
-                                <img class="card-img-top" alt="Bootstrap Thumbnail First" src="data:image/jpeg;base64, @item.Image.Bytes">
-                            }
-                            else
-                            {
-                                <img class="card-img-top" alt="Bootstrap Thumbnail First" src="@item.Image.Path">
-                            }
-                            <div class="card-block" style="padding: 5px">
-                                <h5 class="card-title">
-                                    @item.Name
-                                </h5>
-                                <p class="card-text">
-                                    @item.Description
-                                </p>
-                                <p class="card-text">
-                                    #@item.NoteCustom
-                                </p>
-                                <p class="card-text">
-                                    @item.GeneralNote.Name
-                                </p>
-                                <div class="row">
-                                    <div class="col-3">
-                                        <a class="btn btn-outline-primary" asp-controller="Categories" asp-action="Index" asp-route-id="@item.Id">@item.Category.Name</a>
-                                    </div>
-                                    <div class="col-md-4">
-                                    </div>
-                                    <div class="col-auto">
-                                        <a class="btn btn-success">
-                                            @item.Price рублей
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h1>
+                Добро пожаловать в каталог продуктов!
+            </h1>
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12">
+        <h3>
+            Список продуктов
+        </h3>
+        <div class="row">
+            @if (User.IsInRole(CustomRoles.Administrator) || User.IsInRole(CustomRoles.Advanced))
+            {
+                <div class="col-md-3">
+                    <a class="btn btn-outline-info btn-block" asp-action="Edit" asp-controller="Products">Добавить продукт</a>
+                </div>
+            }
+            <div class="col-md-4"></div>
+            <div class="col-md-5">
+                <form method="get">
+                    <div class="form-inline form-group">
+                        <input name="searchName" class="form-control" />
+                        <input type="submit" value="Search" class="btn btn-outline-success" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.Products)
+            {
+                <div class="col-md-4">
+                    <div class="card" style="margin: 10px">
+                        @if (string.IsNullOrEmpty(item.Image.Path))
+                        {
+                            <img class="card-img-top" alt="Bootstrap Thumbnail First" src="data:image/jpeg;base64, @item.Image.Bytes">
+                        }
+                        else
+                        {
+                            <img class="card-img-top" alt="Bootstrap Thumbnail First" src="@item.Image.Path">
+                        }
+                        <div class="card-block" style="padding: 5px">
+                            <h5 class="card-title">
+                                @item.Name
+                            </h5>
+                            <p class="card-text">
+                                @item.Description
+                            </p>
+                            <p class="card-text">
+                                #@item.NoteCustom
+                            </p>
+                            <p class="card-text">
+                                @item.GeneralNote
+                            </p>
+                            <div class="row">
+                                <div class="col-3">
+                                    <a class="btn btn-outline-primary" asp-controller="Categories" asp-action="Details" asp-route-id="@item.CategoryId">@item.Category.Name</a>
+                                </div>
+                                <div class="col-md">
+                                </div>
+                                <div class="col-auto">
+                                    <a class="btn btn-success">
+                                        @item.Price рублей
+                                    </a>
+                                </div>
+                            </div>
+                            @if (User.IsInRole(CustomRoles.Administrator) || User.IsInRole(CustomRoles.Advanced))
+                            {
+                                <div class="row" style="margin: 5px">
+                                    <a class="btn btn-outline-warning btn-block" asp-controller="Products" asp-action="Edit" asp-route-id="@item.ProductId">
+                                        Изменить продукт
+                                    </a>
+                                </div>
+                                <div class="row" style="margin: 5px">
+                                    <a class="btn btn-outline-danger btn-block" asp-controller="Products" asp-action="Delete" asp-route-id="@item.ProductId">
+                                        Удалить продукт
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+    

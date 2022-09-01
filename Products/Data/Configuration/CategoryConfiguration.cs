@@ -11,28 +11,28 @@ namespace Products.Configuration
             builder.HasData(
                 new Category
                 {
-                    Id = 1,
+                    CategoryId = 1,
                     Name = "Еда",
                     ImageId = 2,
                     Count = 2
                 },
                 new Category
                 {
-                    Id = 2,
+                    CategoryId = 2,
                     Name = "Вкусности",
                     ImageId = 7,
                     Count = 1
                 },
                 new Category
                 {
-                    Id = 3,
+                    CategoryId = 3,
                     Name = "Вода",
                     ImageId = 6,
                     Count = 1
                 },
                 new Category
                 {
-                    Id = 4,
+                    CategoryId = 4,
                     Name = "Без категории",
                     ImageId = 8,
                     Count = 0

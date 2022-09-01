@@ -14,8 +14,6 @@ namespace Products.Configurations
 
             CreateMap<Category, CategoryDto>().ReverseMap();
 
-            CreateMap<GeneralNote, GeneralNoteDto>().ReverseMap();
-
             CreateMap<Image, ImageDto>().ReverseMap();
         }
     }

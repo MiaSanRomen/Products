@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NuGet.DependencyResolver;
 using Products.Data;
 using Products.Interfaces;
 
@@ -47,10 +48,20 @@ namespace Products.Repositories
             return await _context.Set<T>().FindAsync(id);
         }
 
+        public virtual Task<T> GetDetails(int id)
+        {
+            throw new NotSupportedException();
+        }
+
         public async Task UpdateAsync(T entity)
         {
             _context.Update(entity);
             await _context.SaveChangesAsync();
+        }
+
+        public void TrackerClearAsync()
+        {
+            _context.ChangeTracker.Clear();
         }
     }
 }

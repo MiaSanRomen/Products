@@ -1,37 +1,42 @@
-﻿@using Products.ViewModels
+﻿@using Products.Configurations
+@using Products.ViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model CategoryDetailsViewModel
 @{
     ViewData["Title"] = Model.Category.Name + " - продукты";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_BodyPartial.cshtml";
 }
 
 <h2>@Model.Category.Name</h2>
-<p><a asp-action="Edit">Редактировать категорию</a></p>
+@if (User.IsInRole(CustomRoles.Administrator) && !Model.IsDefaultCategory)
+{
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn btn-outline-warning btn-block" asp-action="Edit" asp-controller="Categories" asp-route-id="@Model.Category.CategoryId">Редактировать категорию</a>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-5">
+            <a class="btn btn-outline-danger btn-block" asp-action="Delete" asp-controller="Categories" asp-route-id="@Model.Category.CategoryId">Удалить категорию</a>
+        </div>
+    </div>
+}
 <table class="table">
     <tr>
-        <th></th>
-        <th>Категория</th>
-        <th>Количество продуктов</th>
-        <th></th>
+        <th>Имя</th>
+        <th>Описание</th>
+        <th>Цена</th>
+        <th>Примечание общее</th>
+        <th>Примечание специальное</th>
     </tr>
     @foreach (var item in Model.Category.Products)
     {
         <tr>
-            <td>
-                @if (string.IsNullOrEmpty(item.Image.Path))
-                {
-                    <img class="card-img-top" alt="Bootstrap Thumbnail First" src="data:image/jpeg;base64, @item.Image.Bytes)">
-                }
-                else
-                {
-                    <img class="card-img-top" alt="Bootstrap Thumbnail First" src="@item.Image.Path">
-                }
-            </td>
             <td>@item.Name</td>
             <td>@item.Description</td>
             <td>@item.Price</td>
+            <td>@item.GeneralNote</td>
             <td>@item.NoteCustom</td>
-            <td>@item.GeneralNote.Name</td>
         </tr>
     }
 </table>

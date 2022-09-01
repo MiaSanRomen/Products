@@ -11,46 +11,46 @@ namespace Products.Configuration
             builder.HasData(
                 new Product
                 {
-                    Id = 1,
+                    ProductId = 1,
                     Name = "Селедка",
                     Description = "Селедка соленая",
                     NoteCustom = "Пересоленая",
                     Price = 10000,
                     CategoryId = 1,
-                    GeneralNoteId = 1,
+                    GeneralNote = "Акция",
                     ImageId = 1
                 },
                 new Product
                 {
-                    Id = 2,
+                    ProductId = 2,
                     Name = "Тушенка",
                     Description = "Тушенка говяжая",
                     NoteCustom = "Жилы",
                     Price = 20000,
                     CategoryId = 1,
-                    GeneralNoteId = 2,
+                    GeneralNote = "Вкусная",
                     ImageId = 4
                 },
                 new Product
                 {
-                    Id = 3,
+                    ProductId = 3,
                     Name = "Сгущенка",
                     Description = "В банках",
                     NoteCustom = "Вкусная",
                     Price = 30000,
                     CategoryId = 2,
-                    GeneralNoteId = 3,
+                    GeneralNote = "С ключом",
                     ImageId = 5
                 },
                 new Product
                 {
-                    Id = 4,
+                    ProductId = 4,
                     Name = "Квас",
                     Description = "В бутылках",
                     NoteCustom = "Теплый",
                     Price = 15000,
                     CategoryId = 3,
-                    GeneralNoteId = 4,
+                    GeneralNote = "Вятский",
                     ImageId = 3
                 }
             );

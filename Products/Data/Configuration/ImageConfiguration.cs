@@ -11,42 +11,42 @@ namespace Products.Configuration
             builder.HasData(
                 new Image
                 {
-                    Id = 1,
+                    ImageId = 1,
                     Path = "/images/fish.jfif"
                 },
                 new Image
                 {
-                    Id = 2,
+                    ImageId = 2,
                     Path = "/images/food.jpg"
                 },
                 new Image
                 {
-                    Id = 3,
+                    ImageId = 3,
                     Path = "/images/kvas.jpg"
                 },
                 new Image
                 {
-                    Id = 4,
+                    ImageId = 4,
                     Path = "/images/meat.jpg"
                 },
                 new Image
                 {
-                    Id = 5,
+                    ImageId = 5,
                     Path = "/images/sugarmilk.jpg"
                 },
                 new Image
                 {
-                    Id = 6,
+                    ImageId = 6,
                     Path = "/images/water.jpg"
                 },
                 new Image
                 {
-                    Id = 7,
+                    ImageId = 7,
                     Path = "/images/yummy.jpg"
                 },
                 new Image
                 {
-                    Id = 8,
+                    ImageId = 8,
                     Path = "/images/food-unknown.jpg"
                 }
             );

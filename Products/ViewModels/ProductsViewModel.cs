@@ -4,7 +4,7 @@ namespace Products.ViewModels
 {
     public class ProductsViewModel : BaseViewModel
     {
-        public ProductsViewModel(ICollection<ProductDto> products)
+        public ProductsViewModel(ICollection<ProductDto> products, ICollection<CategoryDto> categories) : base(categories)
         {
             Products = products;
         }

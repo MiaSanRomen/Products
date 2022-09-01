@@ -1,12 +1,19 @@
-﻿@using Products.ViewModels
-@model CategoriesViewModel
+﻿@using Products.Configurations
+@using Products.ViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model BaseViewModel
 @{
-    ViewData["Title"] = "Products' catalog";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Все категории";
+    Layout = "~/Views/Shared/_BodyPartial.cshtml";
 }
 
 <h2>Список всех категорий</h2>
-<p><a asp-action="Create">Добавить категорию</a></p>
+@if (User.IsInRole(CustomRoles.Administrator))
+    {
+        <div class="row">
+            <a class="btn btn-outline-info btn-block" asp-controller="Categories" asp-action="Edit">Добавить категорию</a>
+        </div>
+    }
 <table class="table">
     <tr>
         <th></th>
@@ -29,7 +36,7 @@
             </td>
             <td>@item.Name</td>
             <td>@item.Count</td>
-            <td><a class="btn btn-outline-success" asp-controller="Categories" asp-action="Index" asp-route-id="@item.Id">Перейти</a></td>
+            <td><a class="btn btn-outline-success" asp-controller="Categories" asp-action="Details" asp-route-id="@item.CategoryId">Перейти</a></td>
         </tr>
     }
 </table>

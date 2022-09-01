@@ -1,0 +1,28 @@
+﻿@using Products.ViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RemoveCategoryViewModel
+@{
+    ViewBag.Title = "Удаление категории";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Название</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dd>
+            Вы уверены, что хотите удалить категорию? Все продукты будут помещены в раздел "Без категории".
+        </dd>
+    </dl>
+
+    <div>
+        <form asp-controller="Home" asp-action="Delete" method="post">
+            <div class="form-group">
+                <input type="submit" class="btn btn-outline-danger" value="Remove" />
+            </div>
+        </form>
+    </div>
+</div>

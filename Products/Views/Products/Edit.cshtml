@@ -1,5 +1,49 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Products.ViewModels
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model EditProductViewModel
 @{
+    ViewBag.Title = Model.IsNew ? "Новый продукт" : "Изменить продукт";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<form asp-action="edit" asp-controller="products" asp-route-id="@Model.Product.ProductId">
+    <div class="form-group" style="padding: 5px">
+        <label asp-for="Product.Name" class="control-label">Название:</label>
+        <input type="text" asp-for="Product.Name" class="form-control" />
+    </div>
+    <div class="form-group" style="padding: 5px">
+        <label asp-for="Product.Description" class="control-label">Описание:</label>
+        <input type="text" asp-for="Product.Description" class="form-control" />
+    </div>
+    <div class="form-group" style="padding: 5px">
+        <label asp-for="Product.GeneralNote" class="control-label">Примечание общее:</label>
+        <input type="text" asp-for="Product.GeneralNote" class="form-control" />
+    </div>
+    <div class="form-group" style="padding: 5px">
+        <label asp-for="Product.NoteCustom" class="control-label">Примечание специальное:</label>
+        <input type="text" asp-for="Product.NoteCustom" class="form-control" />
+    </div>
+    <div class="form-group" style="padding: 5px">
+        <label asp-for="Product.Price" class="control-label">Стоимость в рублях:</label>
+        <input type="number" asp-for="Product.Price" class="form-control" />
+    </div>
+    <div class="form-group" style="padding: 5px">
+        <label asp-for="Product.CategoryId">Категория:</label>
+        <select class="form-control" asp-for="Product.CategoryId" multiple="false">
+            @foreach (var category in Model.Categories)
+            {
+                <option value=@category.CategoryId>@category.Name</option>
+            }
+        </select>
+    </div>
+    @*<div class="form-group">
+        <label asp-for="Image" class="control-label">Изображение</label>
+        <input type="file" asp-for="Image" class="form-control" />
+    </div>*@
+    <input type="text" asp-for="CategoryId" hidden="true" class="form-control" />
+    <input type="text" asp-for="Product.ProductId" hidden="true" class="form-control" />
+    <input type="text" asp-for="Product.ImageId" hidden="true" class="form-control" />
+    <div class="form-group" style="padding: 5px">
+        <input type="submit" value="Сохранить" class="btn btn-outline-success" />
+    </div>
+</form>
